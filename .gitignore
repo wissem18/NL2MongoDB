@@ -1,0 +1,4 @@
+/data
+.env
+/logs
+/nl2mongo_env
