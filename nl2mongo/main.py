@@ -26,49 +26,23 @@ mongodb_handler = MongoDBHandler(
 )
 
 
-# Start the chat-based application
-def main():
-    print("Welcome to the MongoDB Query Assistant!")
-    print("Ask your questions, and I'll generate MongoDB queries for you.")
-    print("Type 'exit' or 'quit' to end the session.\n")
-    while True:
-        try:
-            user_input = input("\nYour Question: ")
-            if user_input.lower() in ["exit", "quit"]:
-                mongodb_handler.close_connection()
-                print("Goodbye!")
-                break
+def process_user_input(user_input):
+    """
+    Process user input, generate a query via LLM, execute it on MongoDB, and return results.
 
-            # Pass the user input to the LLM handler
-            response = llm_handler.chat_with_llm(user_input)
+    :param user_input: The user's natural language input.
+    """
 
-            # Get the query and sort from the response
-            query = response.get("query", {})
-            sort = response.get("sort", {})
-            logging.info(f"Generated Query: {query}, Sort: {sort}")
+    response = llm_handler.chat_with_llm(user_input)
 
-            # Execute the query and fetch results
-            try:
-                results = mongodb_handler.execute_query(query, sort)
-                formatted_results = mongodb_handler.format_results(results)
+    # Check if the response is ambiguous
+    if response.get("type") == "explanation":
+        return {"type": "explanation", "message": response.get("message", "No explanation provided.")}
 
-                print("\nQuery Results:")
-                if formatted_results:
-                    for result in formatted_results:
-                        print(result)
-                else:
-                    print("No results found.")
+    # Extract query and sort
+    query = response.get("query", {})
+    sort = response.get("sort", {})
 
-                logging.info(f"Query Results: {formatted_results}")
-
-            except Exception as e:
-                print("Error executing the query. Please check your database connection or query syntax.")
-                logging.error(f"Error executing query: {e}")
-
-        except Exception as e:
-            print("An error occurred. Please try again.")
-            logging.error(f"Unexpected error: {e}")
-
-
-if __name__ == "__main__":
-    main()
+    # Execute query if valid
+    results = mongodb_handler.execute_query(query, sort)
+    return {"type": "results", "data": results}

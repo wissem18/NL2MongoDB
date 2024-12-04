@@ -50,11 +50,13 @@ class MongoDBHandler:
         :return: Formatted list of results.
         """
         try:
-            formatted = [
-                {key: value for key, value in record.items() if key != "_id"} for record in results
-            ]
+            formatted_results = []
+            for result in results:
+                # Convert ObjectId to string or exclude it
+                result.pop("_id", None)  # Remove the '_id' field
+                formatted_results.append(result)
             logging.info("Results formatted successfully.")
-            return formatted
+            return formatted_results
         except Exception as e:
             logging.error(f"Error formatting results: {e}")
             raise

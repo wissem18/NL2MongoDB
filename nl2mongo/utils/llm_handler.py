@@ -111,23 +111,17 @@ class LLMHandler:
                         "content": parsed_response["explanation"]
                     })
 
-                    # Print the clarifying question and get a response from the user
-                    print(parsed_response["explanation"])
-                    user_input = input("Your response: ")
+                    # Return the ambiguous response for Streamlit to handle
+                    return {"type": "explanation", "message": parsed_response["explanation"]}
 
-                    # Add user input to the conversation history
-                    self.conversation_history.append({
-                        "role": "user",
-                        "content": user_input
-                    })
-                else:
-                    # Valid query generated, return it
-                    logging.info("Valid query generated successfully.")
-                    return parsed_response
+                # Valid query generated, return it
+                logging.info("Valid query generated successfully.")
+                return parsed_response
 
             except json.JSONDecodeError:
                 logging.error("Failed to parse LLM response. Ensure the response is valid JSON.")
                 raise
             except Exception as e:
                 logging.error(f"Unexpected error during chat: {e}")
-                raise
+                raise e
+
