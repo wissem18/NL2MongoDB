@@ -52,6 +52,7 @@ class LLMHandler:
                 openai_api_key=self.api_key,
                 **model_kwargs
             )
+
             logging.info("OpenAI model initialized successfully.")
         except Exception as e:
             logging.error(f"Failed to initialize OpenAI model: {e}")
@@ -85,6 +86,8 @@ class LLMHandler:
         """
         while True:
             try:
+                # add the history of questions in the user_input
+                user_input = "\n".join(self.conversation_history)+"\n"+user_input
                 # Load the prompt
                 current_prompt = load_prompt(user_input)
                 logging.info(f"Prompt loaded for input: {user_input}")
@@ -104,17 +107,13 @@ class LLMHandler:
                 if parsed_response["query"] == {}:
                     # Log ambiguous query
                     logging.info("Ambiguous query detected. Asking user for clarification.")
-
-                    # Add the explanation to the conversation history
-                    self.conversation_history.append({
-                        "role": "assistant",
-                        "content": parsed_response["explanation"]
-                    })
-
+                    # Add the user input to the conversation history
+                    self.conversation_history.append(user_input)
                     # Return the ambiguous response for Streamlit to handle
                     return {"type": "explanation", "message": parsed_response["explanation"]}
 
-                # Valid query generated, return it
+                # Valid query generated, return it and delete the history
+                self.conversation_history = []
                 logging.info("Valid query generated successfully.")
                 return parsed_response
 
@@ -124,4 +123,3 @@ class LLMHandler:
             except Exception as e:
                 logging.error(f"Unexpected error during chat: {e}")
                 raise e
-

@@ -1,5 +1,5 @@
 import streamlit as st
-from main import process_user_input
+from main import process_user_input, llm_handler
 import pandas as pd
 
 st.set_page_config(page_title="Compliance Regulatory MongoDB Query Assistant", layout="wide")
@@ -21,6 +21,7 @@ def reset_chat():
 st.sidebar.title("Options")
 if st.sidebar.button("New Chat"):
     reset_chat()
+    llm_handler.conversation_history = []  # Clear LLM context when starting a new chat
 
 # Display chat messages
 for msg in st.session_state.messages:

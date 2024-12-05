@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose the port Streamlit runs on (default: 8501)
-EXPOSE 8501
+EXPOSE 8080
 
 # Set the command to run the Streamlit app
-CMD ["streamlit", "run", "nl2mongo/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "nl2mongo/app.py", "--server.port=8080", "--server.address=0.0.0.0"]

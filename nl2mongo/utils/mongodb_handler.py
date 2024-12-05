@@ -68,4 +68,4 @@ class MongoDBHandler:
             logging.info("MongoDB connection closed successfully.")
         except Exception as e:
             logging.error(f"Error closing MongoDB connection: {e}")
-            raise
+            raise e
