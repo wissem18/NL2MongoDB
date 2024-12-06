@@ -37,9 +37,8 @@ The system comprises the following components:
 
 **The Agent's workflow:**
 
-![LangGraph agent workflow](images/agent_workflow.png)
+<img src="images/agent_workflow.png" alt="LangGraph agent workflow" width="500" height="600">
 
-<img src="images/agent_workflow.png" alt="LangGraph agent workflow" width="400" height="600">
 ---
 
 ## 📦 Installation and Setup
