@@ -1,6 +1,7 @@
 # Natural Language to MongoDB Query Converter
 
 **A Streamlit-powered application leveraging LangChain, OpenAI GPT, and MongoDB to dynamically convert natural language queries into MongoDB commands.**
+
 [link to canva presentation](https://www.canva.com/design/DAGYf6u_Jic/7ozCMm6IMvFJy61cSKRQLA/edit?utm_content=DAGYf6u_Jic&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
@@ -33,8 +34,10 @@ The system comprises the following components:
    - **Dockerized Environment:** Ensures portability and consistency across systems.
 
 ![Architecture Diagram](images/architecture.png)
+
 **The Agent's workflow:**
-![Architecture Diagram](images/agent_workfolw.png)
+
+![LangGraph agent workflow](images/agent_workfolw.png)
 
 ---
 
