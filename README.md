@@ -33,7 +33,7 @@ The system comprises the following components:
 4. **Deployment:**
    - **Dockerized Environment:** Ensures portability and consistency across systems.
 
-![Architecture Diagram](images/architecture.png)
+![Architecture Diagram](images/architecture.png =100x20)
 
 **The Agent's workflow:**
 
