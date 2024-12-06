@@ -34,7 +34,7 @@ The system comprises the following components:
    - **Dockerized Environment:** Ensures portability and consistency across systems.
 
 ![Architecture Diagram](images/architecture.png)
-<img src="images/architecture.png" alt="Architecture Diagram" width="400" height="200">
+<img src="images/architecture.png" alt="Architecture Diagram" width="800" height="500">
 
 **The Agent's workflow:**
 
