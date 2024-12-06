@@ -37,7 +37,7 @@ The system comprises the following components:
 
 **The Agent's workflow:**
 
-![LangGraph agent workflow](images/agent_workfolw.png)
+![LangGraph agent workflow](images/agent_workflow.png)
 
 ---
 
