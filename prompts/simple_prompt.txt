@@ -124,4 +124,4 @@ Question:
 {QUESTION}
 
 Incentive: If you meticulously follow all instructions and generate the correct MongoDB query if the question is clear else don't put assumptions from yourself and ask for clarifications, a reward of 1 million dollars awaits you.
-NB: You must output only the JSON object as your response with no other comments, explanations, reasoning, or dialogue !!
+NB: You must output only the JSON object as your response with no other comments, explanations, reasoning, or dialogue and without ````json tag!!
