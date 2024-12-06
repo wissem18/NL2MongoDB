@@ -43,21 +43,38 @@ The system comprises the following components:
 
 ## 📦 Installation and Setup
 
+## 📦 Installation and Setup
+
 ### Prerequisites
-- You only need Docker installed on your system.
+- Docker installed on your system.
+- A running instance of MongoDB.
+- OpenAI API Key for GPT access.
 
 ### Steps
 
-1. **Pull the Docker Image**
+1. **Clone the Repository**
    ```bash
-   docker pull yousfiwissem224602/nl2mongo:latest
+   git clone https://github.com/username/NL2MongoDB.git
+   cd NL2MongoDB
    ```
-2. **Run the Docker Image **
+2. **Configure Environment Variables**
+  Create a .env file in the root directory containing
+```
+OPENAI_API_KEY=
+MONGO_URI=
+PROMPT_PATH=
+AGENT_PROMPT_PATH=
+LOG_FILE=
+DATABASE_NAME=
+COLLECTION_NAME=
+```
+3. **Build and Run the Docker Container**
    ```bash
-   docker run -d -p 8080:8080 yousfiwissem224602/nl2mongo:latest
+   docker build -t nl2mongodb .
+   docker run -p 8080:8080 nl2mongodb
    ```
-  3. **Access the application **
-	  Open your browser and navigate to http://localhost:8080.
+4. **Access the Application**
+   Open your browser and navigate to http://localhost:8080
 
 ## 🛠️ How to Use
 
